@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -6,7 +5,7 @@ import { getGuideData } from "../utils/storage";
 import { formatDate } from "../utils/date";
 import TripHeader from "../components/TripHeader";
 import TimelineStop from "../components/TimelineStop";
-import { Calendar, MapPin, Hotel, Info } from "lucide-react";
+import { Calendar, MapPin, Hotel, Info, Sun } from "lucide-react";
 
 const DayTimeline = () => {
   const { date } = useParams<{ date: string }>();
