@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -96,6 +97,31 @@ const DayTimeline = () => {
             )}
           </div>
           
+          {/* Hotel information - highlighted and prominently displayed */}
+          {dayData.hotel && (
+            <div className="bg-provence-lavender/30 p-6 rounded-lg mb-6 border-l-4 border-provence-lavender shadow-sm">
+              <div className="flex flex-col">
+                <div className="flex items-center mb-3">
+                  <Hotel className="w-6 h-6 mr-2 text-provence-lavender shrink-0" />
+                  <h3 className="font-semibold text-lg">Tonight's Accommodation</h3>
+                </div>
+                <div className="ml-8 space-y-1">
+                  <p className="text-base font-medium">{dayData.hotel.name}</p>
+                  <p className="text-sm text-gray-600">{dayData.hotel.address}</p>
+                  <a 
+                    href={dayData.hotel.mapsLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-sm text-provence-blue hover:underline mt-1 inline-flex items-center"
+                  >
+                    <MapPin className="w-4 h-4 mr-1" />
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+          
           <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg mb-6">
             <p className="text-lg font-medium">{dayData.concept}</p>
             
@@ -106,25 +132,6 @@ const DayTimeline = () => {
               </div>
             )}
           </div>
-          
-          {dayData.hotel && (
-            <div className="bg-provence-blue/10 p-4 rounded-lg mb-6 flex flex-col">
-              <div className="flex items-center mb-2">
-                <Hotel className="w-5 h-5 mr-2 text-provence-blue shrink-0" />
-                <h3 className="font-medium">Accommodation</h3>
-              </div>
-              <p className="text-sm font-medium">{dayData.hotel.name}</p>
-              <p className="text-sm">{dayData.hotel.address}</p>
-              <a 
-                href={dayData.hotel.mapsLink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-sm text-provence-blue hover:underline mt-1"
-              >
-                View on Google Maps
-              </a>
-            </div>
-          )}
           
           {dayData.notes && (
             <div className="bg-provence-olive/20 p-4 rounded-lg mb-6 flex items-start">
