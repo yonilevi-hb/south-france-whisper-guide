@@ -17,6 +17,9 @@ const App = () => {
   useEffect(() => {
     // Initialize local storage with data
     initializeStorage();
+    
+    // Update document title
+    document.title = "Côte d'Azur for Lyne and Yoni";
   }, []);
 
   return (
@@ -25,7 +28,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen bg-background">
+          <div className="min-h-screen bg-background bg-[url('/bg-pattern.svg')] bg-fixed">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/day/:date" element={<DayTimeline />} />

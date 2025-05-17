@@ -11,10 +11,10 @@ interface TripHeaderProps {
 const TripHeader: React.FC<TripHeaderProps> = ({ 
   showBack = false, 
   showSettings = true,
-  title = "UsTwo Guide" 
+  title = "Côte d'Azur for Lyne and Yoni" 
 }) => {
   return (
-    <div className="flex items-center justify-between p-4 border-b border-provence-lavender/20">
+    <div className="flex items-center justify-between p-4 border-b border-provence-lavender/20 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
       <div className="flex items-center">
         {showBack && (
           <Link 
@@ -24,8 +24,10 @@ const TripHeader: React.FC<TripHeaderProps> = ({
             ← Back
           </Link>
         )}
-        <h1 className="text-lg font-medium tracking-tight">
-          {title}
+        <h1 className="text-lg font-medium tracking-tight flex items-center">
+          <span className="hidden sm:inline">🌊</span>
+          <span className="mx-1">{title}</span>
+          <span className="hidden sm:inline">🌴</span>
         </h1>
       </div>
       {showSettings && (

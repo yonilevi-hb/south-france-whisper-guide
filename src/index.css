@@ -103,4 +103,52 @@
   .floating-badge {
     @apply animate-float;
   }
+  
+  /* Animation for cards */
+  .hover-scale {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-scale:hover {
+    @apply transform scale-[1.02] shadow-md;
+  }
+  
+  /* Page transitions */
+  .page-enter {
+    @apply opacity-0 transform translate-y-4;
+  }
+  
+  .page-enter-active {
+    @apply opacity-100 transform translate-y-0 transition-all duration-300;
+  }
+  
+  /* Glass effect for cards */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-sm border border-white/20 shadow-sm;
+  }
+  
+  /* Timeline animations */
+  .timeline-item {
+    @apply transition-all duration-300 hover:transform hover:scale-[1.01];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.provence.gray');
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.provence.lavender');
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.provence.lavender');
+  opacity: 0.8;
 }
