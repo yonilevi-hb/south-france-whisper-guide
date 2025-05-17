@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { Day } from "../types/guide";
 import { formatDate } from "../utils/date";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, Hotel } from "lucide-react";
 
 interface DailyOverviewProps {
   day: Day;
@@ -52,6 +52,13 @@ const DailyOverview: React.FC<DailyOverviewProps> = ({ day, isToday = false }) =
             <span className="inline-flex items-center">
               <span className="mr-1">🌤️</span> {day.weather}
             </span>
+          </div>
+        )}
+        
+        {day.hotel && (
+          <div className="mt-2 text-sm flex items-center gap-1">
+            <Hotel className="w-3 h-3 text-provence-blue" />
+            <span className="text-provence-blue">{day.hotel.name}</span>
           </div>
         )}
         

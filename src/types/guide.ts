@@ -5,12 +5,12 @@ export interface Stop {
   expect: string;
   tip: string;
   location?: string;
-  town?: string;  // Added town field
+  town?: string;
   duration?: string;
   cost?: string;
   reservation?: boolean;
   priority?: "must-see" | "recommended" | "optional";
-  emoji?: string;  // Added emoji field
+  emoji?: string;
 }
 
 export interface Day {
@@ -21,7 +21,12 @@ export interface Day {
   weather?: string;
   drivingDistance?: string;
   notes?: string;
-  emoji?: string;  // Added emoji field
+  emoji?: string;
+  hotel?: {
+    name: string;
+    address: string;
+    mapsLink: string;
+  };
 }
 
 export interface TravelGuide {

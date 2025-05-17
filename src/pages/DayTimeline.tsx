@@ -6,7 +6,7 @@ import { getGuideData } from "../utils/storage";
 import { formatDate } from "../utils/date";
 import TripHeader from "../components/TripHeader";
 import TimelineStop from "../components/TimelineStop";
-import { Calendar, MapPin, Sun, Umbrella, Info } from "lucide-react";
+import { Calendar, MapPin, Hotel, Info } from "lucide-react";
 
 const DayTimeline = () => {
   const { date } = useParams<{ date: string }>();
@@ -107,6 +107,25 @@ const DayTimeline = () => {
               </div>
             )}
           </div>
+          
+          {dayData.hotel && (
+            <div className="bg-provence-blue/10 p-4 rounded-lg mb-6 flex flex-col">
+              <div className="flex items-center mb-2">
+                <Hotel className="w-5 h-5 mr-2 text-provence-blue shrink-0" />
+                <h3 className="font-medium">Accommodation</h3>
+              </div>
+              <p className="text-sm font-medium">{dayData.hotel.name}</p>
+              <p className="text-sm">{dayData.hotel.address}</p>
+              <a 
+                href={dayData.hotel.mapsLink} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-provence-blue hover:underline mt-1"
+              >
+                View on Google Maps
+              </a>
+            </div>
+          )}
           
           {dayData.notes && (
             <div className="bg-provence-olive/20 p-4 rounded-lg mb-6 flex items-start">

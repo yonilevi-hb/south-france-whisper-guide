@@ -1,4 +1,3 @@
-
 import { TravelGuide } from "../types/guide";
 
 export const travelGuide: TravelGuide = {
@@ -10,6 +9,11 @@ export const travelGuide: TravelGuide = {
       "drivingDistance": "~90km",
       "weather": "Sunny, 26°C",
       "emoji": "🌞",
+      "hotel": {
+        "name": "Le Mas des Alizes B&B",
+        "address": "674 bis Rte du Pont de Pierre, 06480 La Colle-sur-Loup, France",
+        "mapsLink": "https://maps.google.com/?q=Le+Mas+des+Alizes+B%26B+674+bis+Route+du+Pont+de+Pierre+06480+La+Colle-sur-Loup+France"
+      },
       "stops": [
         {"time": "08:00", "title": "Breakfast at Marché aux Fleurs Nice", "expect": "Historic flower & food market with local delicacies.", "tip": "Try socca pancakes and pissaladière (onion tart) from Chez Theresa.", "town": "Nice", "emoji": "🥐", "duration": "1 hour"},
         {"time": "09:00", "title": "Drive to Antibes", "expect": "Easy coastal drive, light traffic on Sunday morning.", "tip": "Skip paid parking by using Port Vauban's first free hour.", "town": "Nice → Antibes", "emoji": "🚗", "duration": "30 min"},
@@ -38,6 +42,11 @@ export const travelGuide: TravelGuide = {
       "weather": "Sunny with afternoon clouds, 28°C",
       "emoji": "🎆",
       "notes": "It's Bastille Day! Expect festive atmosphere with celebrations and fireworks in the evening.",
+      "hotel": {
+        "name": "Hotel in Moustiers-Sainte-Marie",
+        "address": "Place de l'église, 04360 Moustiers-Sainte-Marie, France",
+        "mapsLink": "https://maps.google.com/?q=Place+de+l%27%C3%A9glise+04360+Moustiers-Sainte-Marie+France"
+      },
       "stops": [
         {"time": "08:30", "title": "Morning walk to viewpoint", "expect": "Quiet paths, valley views, birdsong.", "tip": "The eastern walkway has better morning light for photos.", "town": "Saint-Paul-de-Vence", "emoji": "🌄", "duration": "30 min"},
         {"time": "09:00", "title": "Drive to Fayence", "expect": "1 h15 through forested hills.", "tip": "Fill up fuel in Tourettes—the cheap station.", "town": "Saint-Paul-de-Vence → Fayence", "emoji": "🚗", "duration": "1h15"},
@@ -65,6 +74,11 @@ export const travelGuide: TravelGuide = {
       "drivingDistance": "~120km",
       "weather": "Sunny, 30°C",
       "emoji": "🍷",
+      "hotel": {
+        "name": "Best Western Plus Hyères Côte D'Azur",
+        "address": "153 Avenue de Hyères, 83250 La Londe-les-Maures, France",
+        "mapsLink": "https://maps.google.com/?q=Best+Western+Plus+Hy%C3%A8res+C%C3%B4te+D%27Azur+153+Avenue+de+Hyeres+83250+La+Londe-les-Maures+France"
+      },
       "stops": [
         {"time": "08:00", "title": "Breakfast with Verdon view", "expect": "Pastries and coffee overlooking the valley.", "tip": "Ask for pain aux raisins—often better than croissants here.", "town": "Moustiers-Sainte-Marie", "emoji": "🥐", "duration": "1 hour"},
         {"time": "09:00", "title": "Drive to Cotignac", "expect": "1 h15 through pine forest.", "tip": "Play the 'French Riviera' Spotify mix for vibes.", "town": "Moustiers-Sainte-Marie → Cotignac", "emoji": "🚗", "duration": "1h15"},
