@@ -12,6 +12,8 @@ export interface Stop {
   priority?: "must-see" | "recommended" | "optional";
   emoji?: string;
   photo?: string;
+  address?: string;
+  mapsLink?: string;
 }
 
 export interface Day {

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -6,7 +5,7 @@ import { getGuideData } from "../utils/storage";
 import { formatDate } from "../utils/date";
 import TripHeader from "../components/TripHeader";
 import TimelineStop from "../components/TimelineStop";
-import { Calendar, MapPin, Hotel, Info, Sun, Utensils, Gift, ImageIcon, Lightbulb, Award } from "lucide-react";
+import { Calendar, MapPin, Hotel, Info, Sun, Utensils, Gift, ImageIcon, Lightbulb, Award, Navigation } from "lucide-react";
 import PlaceHighlight from "../components/PlaceHighlight";
 
 const DayTimeline = () => {
@@ -78,13 +77,17 @@ const DayTimeline = () => {
           title: "Picasso Museum",
           description: "Former Grimaldi Castle housing Picasso's works created during his stay in 1946",
           image: "https://images.unsplash.com/photo-1598908314732-07113901949e?auto=format&fit=crop&w=600&q=80",
-          tips: ["Go early to avoid crowds", "Don't miss the terrace view of the sea"]
+          tips: ["Go early to avoid crowds", "Don't miss the terrace view of the sea"],
+          address: "Place Mariejol, 06600 Antibes, France",
+          mapsLink: "https://maps.app.goo.gl/7amknF1UXY2aMk4p8"
         },
         {
           title: "Marché Provençal",
           description: "Bustling market with local produce, olives, spices, and Provençal crafts",
           image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=600&q=80",
-          tips: ["Visit before noon for the best selection", "Try the lavender honey and olive tapenade"]
+          tips: ["Visit before noon for the best selection", "Try the lavender honey and olive tapenade"],
+          address: "12 Cours Masséna, 06600 Antibes, France",
+          mapsLink: "https://maps.app.goo.gl/dZXsGARF5A89UhF7A"
         }
       ];
     } else if (dayData.title.includes("Grasse")) {
@@ -93,7 +96,9 @@ const DayTimeline = () => {
           title: "Fragonard Perfume Factory",
           description: "Historic perfumery offering tours of production and a museum of scent",
           image: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?auto=format&fit=crop&w=600&q=80",
-          tips: ["Book the workshop to create your own perfume", "The gift shop has unique souvenirs"]
+          tips: ["Book the workshop to create your own perfume", "The gift shop has unique souvenirs"],
+          address: "20 Bd Fragonard, 06130 Grasse, France",
+          mapsLink: "https://maps.app.goo.gl/EecbByz99AhMExJP6"
         }
       ];
     } else if (dayData.title.includes("Porquerolles")) {
@@ -102,7 +107,9 @@ const DayTimeline = () => {
           title: "Plage Notre Dame",
           description: "Often ranked among the most beautiful beaches in Europe",
           image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
-          tips: ["Arrive early for the best spot", "Bring your own water and snacks"]
+          tips: ["Arrive early for the best spot", "Bring your own water and snacks"],
+          address: "Plage Notre Dame, Île de Porquerolles, 83400 Hyères, France",
+          mapsLink: "https://maps.app.goo.gl/RZnSK1Z6xkDwaxzW6"
         }
       ];
     } else if (dayData.title.includes("Saint-Paul-de-Vence")) {
@@ -111,7 +118,20 @@ const DayTimeline = () => {
           title: "Fondation Maeght",
           description: "Modern art museum with works by Miró, Chagall, Giacometti and more",
           image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=600&q=80",
-          tips: ["Don't miss the sculpture garden", "Allow at least 2 hours to explore"]
+          tips: ["Don't miss the sculpture garden", "Allow at least 2 hours to explore"],
+          address: "623 Chem. des Gardettes, 06570 Saint-Paul-de-Vence, France",
+          mapsLink: "https://maps.app.goo.gl/xRwyjjeZqGkhLssv9"
+        }
+      ];
+    } else if (dayData.title.includes("Moustiers")) {
+      return [
+        {
+          title: "Notre-Dame de Beauvoir Chapel",
+          description: "Historic 12th-century chapel with panoramic views of the valley",
+          image: "https://images.unsplash.com/photo-1504175401824-04277424cb50?auto=format&fit=crop&w=600&q=80",
+          tips: ["The hike takes about 20 minutes", "Try to go early morning or late afternoon for the best light"],
+          address: "Notre-Dame de Beauvoir, 04360 Moustiers-Sainte-Marie, France", 
+          mapsLink: "https://maps.app.goo.gl/cPqEqZidwG9wEb8G9"
         }
       ];
     }
@@ -145,8 +165,8 @@ const DayTimeline = () => {
   };
   
   const localHighlights = getLocationHighlights();
-  const localSpecialties = getLocalSpecialties();
-  const shoppingRecommendations = getShoppingRecommendations();
+  const localSpecialties = dayData.localSpecialties || getLocalSpecialties();
+  const shoppingRecommendations = dayData.shoppingRecommendations || getShoppingRecommendations();
   
   return (
     <div className="pb-12">
@@ -193,7 +213,7 @@ const DayTimeline = () => {
                     rel="noopener noreferrer" 
                     className="inline-flex items-center px-3 py-1.5 bg-provence-blue/20 rounded-full text-sm font-medium text-provence-blue hover:bg-provence-blue/30 transition-colors mt-1"
                   >
-                    <MapPin className="w-4 h-4 mr-1" />
+                    <Navigation className="w-4 h-4 mr-1" />
                     View on Google Maps
                   </a>
                 </div>

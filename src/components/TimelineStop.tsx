@@ -1,6 +1,6 @@
 
 import { Stop } from "../types/guide";
-import { MapPin, Lightbulb } from "lucide-react";
+import { MapPin, Lightbulb, Navigation } from "lucide-react";
 
 interface TimelineStopProps {
   stop: Stop;
@@ -29,6 +29,8 @@ const TimelineStop: React.FC<TimelineStopProps> = ({ stop, isLast = false }) => 
 
   // Get a photo URL based on the stop title
   const getStopPhotoUrl = () => {
+    if (stop.photo) return stop.photo;
+    
     if (stop.title.includes("Beach") || stop.title.includes("swim")) {
       return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=60";
     } else if (stop.title.includes("Museum") || stop.title.includes("Fondation")) {
@@ -93,6 +95,28 @@ const TimelineStop: React.FC<TimelineStopProps> = ({ stop, isLast = false }) => 
           <div className="flex items-center gap-1 text-sm text-provence-lavender/80 mb-2">
             <MapPin size={14} />
             <span>{stop.town}</span>
+          </div>
+        )}
+        
+        {/* Add address information if available */}
+        {stop.address && !stop.title.includes("Drive") && (
+          <div className="my-2 text-sm bg-provence-blue/10 p-2 rounded-md">
+            <div className="flex items-center gap-2">
+              <MapPin size={14} className="shrink-0 text-provence-blue" />
+              <span>{stop.address}</span>
+            </div>
+            
+            {stop.mapsLink && (
+              <a 
+                href={stop.mapsLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-1 flex items-center gap-1 text-provence-blue hover:underline text-xs bg-provence-blue/20 py-1 px-2 rounded-full w-fit"
+              >
+                <Navigation size={12} /> 
+                <span>Google Maps</span>
+              </a>
+            )}
           </div>
         )}
         
