@@ -1,6 +1,6 @@
 
 import { Stop } from "../types/guide";
-import { MapPin } from "lucide-react";
+import { MapPin, Lightbulb } from "lucide-react";
 
 interface TimelineStopProps {
   stop: Stop;
@@ -27,7 +27,44 @@ const TimelineStop: React.FC<TimelineStopProps> = ({ stop, isLast = false }) => 
     return "📍";
   };
 
+  // Get a photo URL based on the stop title
+  const getStopPhotoUrl = () => {
+    if (stop.title.includes("Beach") || stop.title.includes("swim")) {
+      return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=60";
+    } else if (stop.title.includes("Museum") || stop.title.includes("Fondation")) {
+      return "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=400&q=60";
+    } else if (stop.title.includes("Market") || stop.title.includes("Shop")) {
+      return "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400&q=60";
+    } else if (stop.title.includes("Dinner") || stop.title.includes("Lunch")) {
+      return "https://images.unsplash.com/photo-1502364271109-0a9a75a2a9df?auto=format&fit=crop&w=400&q=60";
+    } else if (stop.title.includes("View") || stop.title.includes("lookout")) {
+      return "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=400&q=60";
+    } else if (stop.title.includes("Perfume") || stop.title.includes("Fragonard")) {
+      return "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?auto=format&fit=crop&w=400&q=60";
+    }
+    return null;
+  };
+
   const emoji = getEmoji();
+  const photoUrl = getStopPhotoUrl();
+
+  // Get additional context about the stop
+  const getAdditionalContext = () => {
+    if (stop.title.includes("Picasso")) {
+      return "Pablo Picasso lived in Antibes in 1946 and donated several works to this museum.";
+    } else if (stop.title.includes("Fragonard")) {
+      return "Grasse has been the world's perfume capital since the 17th century.";
+    } else if (stop.title.includes("Notre-Dame")) {
+      return "This beautiful beach has been voted one of Europe's most beautiful beaches.";
+    } else if (stop.title.includes("Fondation Maeght")) {
+      return "This prestigious art foundation opened in 1964 and features works by many notable 20th century artists.";
+    } else if (stop.title.includes("Saint-Paul-de-Vence")) {
+      return "This medieval village has been a haven for artists since the 1920s.";
+    }
+    return null;
+  };
+
+  const additionalContext = getAdditionalContext();
 
   return (
     <div className="relative pl-8 pb-8">
@@ -59,6 +96,22 @@ const TimelineStop: React.FC<TimelineStopProps> = ({ stop, isLast = false }) => 
           </div>
         )}
         
+        {photoUrl && (
+          <div className="my-3 rounded-md overflow-hidden h-36">
+            <img 
+              src={photoUrl} 
+              alt={stop.title} 
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+        )}
+        
+        {additionalContext && (
+          <div className="bg-provence-terracotta/10 p-3 rounded-md mb-3 text-sm italic">
+            {additionalContext}
+          </div>
+        )}
+        
         <div className="mt-3 space-y-3">
           <div className="bg-provence-blue/10 p-3 rounded-md">
             <p className="text-sm">
@@ -68,10 +121,13 @@ const TimelineStop: React.FC<TimelineStopProps> = ({ stop, isLast = false }) => 
           </div>
           
           <div className="bg-provence-terracotta/20 p-3 rounded-md">
-            <p className="text-sm">
-              <span className="font-medium">Tip: </span> 
-              {stop.tip}
-            </p>
+            <div className="flex items-start gap-2">
+              <Lightbulb size={16} className="text-provence-terracotta mt-0.5 shrink-0" />
+              <p className="text-sm">
+                <span className="font-medium">Tip: </span> 
+                {stop.tip}
+              </p>
+            </div>
           </div>
           
           {(stop.cost || stop.duration || stop.reservation !== undefined) && (

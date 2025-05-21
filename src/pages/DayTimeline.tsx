@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -5,7 +6,8 @@ import { getGuideData } from "../utils/storage";
 import { formatDate } from "../utils/date";
 import TripHeader from "../components/TripHeader";
 import TimelineStop from "../components/TimelineStop";
-import { Calendar, MapPin, Hotel, Info, Sun } from "lucide-react";
+import { Calendar, MapPin, Hotel, Info, Sun, Utensils, Gift, ImageIcon, Lightbulb, Award } from "lucide-react";
+import PlaceHighlight from "../components/PlaceHighlight";
 
 const DayTimeline = () => {
   const { date } = useParams<{ date: string }>();
@@ -67,6 +69,84 @@ const DayTimeline = () => {
     }
     return "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80";
   };
+  
+  // Generate location-specific highlights based on the day title
+  const getLocationHighlights = () => {
+    if (dayData.title.includes("Antibes")) {
+      return [
+        {
+          title: "Picasso Museum",
+          description: "Former Grimaldi Castle housing Picasso's works created during his stay in 1946",
+          image: "https://images.unsplash.com/photo-1598908314732-07113901949e?auto=format&fit=crop&w=600&q=80",
+          tips: ["Go early to avoid crowds", "Don't miss the terrace view of the sea"]
+        },
+        {
+          title: "Marché Provençal",
+          description: "Bustling market with local produce, olives, spices, and Provençal crafts",
+          image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=600&q=80",
+          tips: ["Visit before noon for the best selection", "Try the lavender honey and olive tapenade"]
+        }
+      ];
+    } else if (dayData.title.includes("Grasse")) {
+      return [
+        {
+          title: "Fragonard Perfume Factory",
+          description: "Historic perfumery offering tours of production and a museum of scent",
+          image: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?auto=format&fit=crop&w=600&q=80",
+          tips: ["Book the workshop to create your own perfume", "The gift shop has unique souvenirs"]
+        }
+      ];
+    } else if (dayData.title.includes("Porquerolles")) {
+      return [
+        {
+          title: "Plage Notre Dame",
+          description: "Often ranked among the most beautiful beaches in Europe",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+          tips: ["Arrive early for the best spot", "Bring your own water and snacks"]
+        }
+      ];
+    } else if (dayData.title.includes("Saint-Paul-de-Vence")) {
+      return [
+        {
+          title: "Fondation Maeght",
+          description: "Modern art museum with works by Miró, Chagall, Giacometti and more",
+          image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=600&q=80",
+          tips: ["Don't miss the sculpture garden", "Allow at least 2 hours to explore"]
+        }
+      ];
+    }
+    return [];
+  };
+
+  // Get local specialties to try based on location
+  const getLocalSpecialties = () => {
+    if (dayData.title.includes("Nice")) {
+      return ["Socca (chickpea pancake)", "Pissaladière (onion tart)", "Salade Niçoise", "Pan Bagnat"];
+    } else if (dayData.title.includes("Antibes") || dayData.title.includes("Grasse")) {
+      return ["Tapenade on fresh bread", "Fougasse bread", "Rose and lavender flavored treats", "Calisson sweets"];
+    } else if (dayData.title.includes("Moustiers")) {
+      return ["Lavender honey", "Olive oil from local mills", "Truffles", "Alpine cheeses"];
+    } else if (dayData.title.includes("Toulon") || dayData.title.includes("Porquerolles")) {
+      return ["Bouillabaisse", "Fresh seafood", "Tarte Tropézienne", "Rosé wine from Provence"];
+    }
+    return ["Provençal rosé wine", "Fresh Mediterranean seafood", "Local goat cheese", "Olive products"];
+  };
+  
+  // Get shopping recommendations based on location
+  const getShoppingRecommendations = () => {
+    if (dayData.title.includes("Grasse")) {
+      return ["Artisanal perfumes", "Scented soaps", "Lavender sachets", "Scented candles"];
+    } else if (dayData.title.includes("Moustiers")) {
+      return ["Hand-painted faience ceramics", "Provençal fabrics", "Lavender products", "Local honey"];
+    } else if (dayData.title.includes("Antibes")) {
+      return ["Local art", "Provençal tablecloths", "Olive wood kitchen items", "Artisanal olive oils"];
+    }
+    return ["Provençal herbs", "Local wines", "Artisanal olive oils", "Lavender products"];
+  };
+  
+  const localHighlights = getLocationHighlights();
+  const localSpecialties = getLocalSpecialties();
+  const shoppingRecommendations = getShoppingRecommendations();
   
   return (
     <div className="pb-12">
@@ -132,12 +212,79 @@ const DayTimeline = () => {
             )}
           </div>
           
+          {/* Local specialties section */}
+          <div className="bg-provence-peach/20 p-4 rounded-lg mb-6">
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <Utensils className="w-5 h-5 text-provence-peach" />
+              <span>Local Specialties to Try</span>
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {localSpecialties.map((specialty, index) => (
+                <div key={index} className="bg-white/70 p-3 rounded-lg flex items-center gap-2">
+                  <span className="text-provence-peach">•</span>
+                  <span>{specialty}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Shopping recommendations */}
+          <div className="bg-provence-olive/20 p-4 rounded-lg mb-6">
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <Gift className="w-5 h-5 text-provence-olive" />
+              <span>What to Buy</span>
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+              {shoppingRecommendations.map((item, index) => (
+                <div key={index} className="bg-white/70 p-3 rounded-lg flex items-center gap-2">
+                  <span className="text-provence-olive">•</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Place highlights */}
+          {localHighlights.length > 0 && (
+            <div className="space-y-4 mb-6">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Award className="w-5 h-5 text-provence-blue" />
+                <span>Highlights Worth Seeing</span>
+              </h3>
+              {localHighlights.map((highlight, index) => (
+                <PlaceHighlight key={index} highlight={highlight} />
+              ))}
+            </div>
+          )}
+          
           {dayData.notes && (
             <div className="bg-provence-olive/20 p-4 rounded-lg mb-6 flex items-start">
               <Info className="w-5 h-5 mr-2 text-provence-olive shrink-0 mt-1" />
               <p className="text-sm">{dayData.notes}</p>
             </div>
           )}
+          
+          {/* Local tips */}
+          <div className="bg-provence-blue/20 p-4 rounded-lg mb-6">
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 text-provence-blue" />
+              <span>Provence Pro Tips</span>
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-provence-blue font-bold min-w-[20px]">1.</span>
+                <p>Most shops close between 12:30-2:30pm for lunch—plan your shopping accordingly</p>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-provence-blue font-bold min-w-[20px]">2.</span>
+                <p>Always greet shopkeepers with "Bonjour" when entering—it's considered rude not to</p>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-provence-blue font-bold min-w-[20px]">3.</span>
+                <p>For the best photos, plan activities during "golden hour" (just after sunrise or before sunset)</p>
+              </li>
+            </ul>
+          </div>
         </div>
         
         <div className="mt-8">
@@ -153,6 +300,37 @@ const DayTimeline = () => {
                 isLast={index === dayData.stops.length - 1} 
               />
             ))}
+          </div>
+        </div>
+        
+        {/* Photo gallery */}
+        <div className="mt-12 mb-8">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
+            <ImageIcon className="w-5 h-5 mr-2 text-provence-terracotta" />
+            <span>Photo Inspiration</span>
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1508050919630-b135583b29ab?auto=format&fit=crop&w=600&q=80" 
+                alt="Inspiration" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1572747451242-efb683ae3eae?auto=format&fit=crop&w=600&q=80" 
+                alt="Inspiration" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=600&q=80" 
+                alt="Inspiration" 
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ export interface Stop {
   reservation?: boolean;
   priority?: "must-see" | "recommended" | "optional";
   emoji?: string;
+  photo?: string;
 }
 
 export interface Day {
@@ -27,6 +28,14 @@ export interface Day {
     address: string;
     mapsLink: string;
   };
+  highlights?: Array<{
+    title: string;
+    description: string;
+    image: string;
+    tips: string[];
+  }>;
+  localSpecialties?: string[];
+  shoppingRecommendations?: string[];
 }
 
 export interface TravelGuide {
