@@ -5,7 +5,7 @@ import { getGuideData } from "../utils/storage";
 import { formatDate } from "../utils/date";
 import TripHeader from "../components/TripHeader";
 import TimelineStop from "../components/TimelineStop";
-import { Calendar, MapPin, Hotel, Info, Sun, Utensils, Gift, ImageIcon, Lightbulb, Award, Navigation } from "lucide-react";
+import { Calendar, MapPin, Hotel, Info, Sun, Utensils, Gift, Lightbulb, Award, Navigation } from "lucide-react";
 import PlaceHighlight from "../components/PlaceHighlight";
 
 const DayTimeline = () => {
@@ -320,37 +320,6 @@ const DayTimeline = () => {
                 isLast={index === dayData.stops.length - 1} 
               />
             ))}
-          </div>
-        </div>
-        
-        {/* Photo gallery */}
-        <div className="mt-12 mb-8">
-          <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <ImageIcon className="w-5 h-5 mr-2 text-provence-terracotta" />
-            <span>Photo Inspiration</span>
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            <div className="aspect-square rounded-lg overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1508050919630-b135583b29ab?auto=format&fit=crop&w=600&q=80" 
-                alt="Inspiration" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="aspect-square rounded-lg overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1572747451242-efb683ae3eae?auto=format&fit=crop&w=600&q=80" 
-                alt="Inspiration" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="aspect-square rounded-lg overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=600&q=80" 
-                alt="Inspiration" 
-                className="w-full h-full object-cover"
-              />
-            </div>
           </div>
         </div>
       </div>
