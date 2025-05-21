@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -97,22 +96,22 @@ const DayTimeline = () => {
             )}
           </div>
           
-          {/* Hotel information - highlighted and prominently displayed */}
+          {/* Hotel information - prominent display with bold styling */}
           {dayData.hotel && (
-            <div className="bg-provence-lavender/30 p-6 rounded-lg mb-6 border-l-4 border-provence-lavender shadow-sm">
+            <div className="bg-provence-lavender/30 p-6 rounded-lg mb-6 border-l-4 border-provence-lavender shadow-md">
               <div className="flex flex-col">
                 <div className="flex items-center mb-3">
                   <Hotel className="w-6 h-6 mr-2 text-provence-lavender shrink-0" />
-                  <h3 className="font-semibold text-lg">Tonight's Accommodation</h3>
+                  <h3 className="font-bold text-lg text-provence-lavender">Tonight's Accommodation</h3>
                 </div>
-                <div className="ml-8 space-y-1">
-                  <p className="text-base font-medium">{dayData.hotel.name}</p>
-                  <p className="text-sm text-gray-600">{dayData.hotel.address}</p>
+                <div className="ml-8 space-y-2">
+                  <p className="text-lg font-semibold">{dayData.hotel.name}</p>
+                  <p className="text-sm text-gray-700">{dayData.hotel.address}</p>
                   <a 
                     href={dayData.hotel.mapsLink} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-sm text-provence-blue hover:underline mt-1 inline-flex items-center"
+                    className="inline-flex items-center px-3 py-1.5 bg-provence-blue/20 rounded-full text-sm font-medium text-provence-blue hover:bg-provence-blue/30 transition-colors mt-1"
                   >
                     <MapPin className="w-4 h-4 mr-1" />
                     View on Google Maps
