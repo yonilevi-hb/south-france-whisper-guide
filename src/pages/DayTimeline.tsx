@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Day } from "../types/guide";
@@ -211,7 +210,7 @@ const DayTimeline = () => {
     return tips;
   };
 
-  // Get time-specific recommendations
+  // Get time-specific recommendations with improved contrast
   const getTimeSpecificTips = () => {
     return [
       {
@@ -345,17 +344,17 @@ const DayTimeline = () => {
             </div>
           )}
 
-          {/* Time-Specific Tips */}
-          <div className="bg-provence-olive/20 p-6 rounded-lg mb-6">
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+          {/* Time-Specific Tips with improved contrast */}
+          <div className="bg-white/95 p-6 rounded-lg mb-6 border border-gray-200 shadow-sm">
+            <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-gray-900">
               <Clock className="w-5 h-5 text-provence-olive" />
               <span>Perfect Timing Guide</span>
             </h3>
             <div className="space-y-3">
               {timeSpecificTips.map((timeSlot, index) => (
-                <div key={index} className="bg-white/70 p-4 rounded-lg">
-                  <h4 className="font-semibold text-provence-olive mb-2">{timeSlot.time}</h4>
-                  <p className="text-sm">{timeSlot.tip}</p>
+                <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <h4 className="font-bold text-gray-900 mb-2 text-base">{timeSlot.time}</h4>
+                  <p className="text-gray-800 text-sm leading-relaxed font-medium">{timeSlot.tip}</p>
                 </div>
               ))}
             </div>
