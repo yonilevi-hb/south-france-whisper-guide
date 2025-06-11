@@ -35,6 +35,8 @@ export interface Day {
     description: string;
     image: string;
     tips: string[];
+    address?: string;
+    mapsLink?: string;
   }>;
   localSpecialties?: string[];
   shoppingRecommendations?: string[];
@@ -46,6 +48,15 @@ export interface TravelGuide {
     police: string;
     ambulance: string;
     tourist?: string;
+    pharmacies?: string;
+    roadside?: string;
   };
   generalTips?: string[];
+  culturalInsights?: {
+    artHistory?: string;
+    perfumeHeritage?: string;
+    culinaryTradition?: string;
+    languageNotes?: string;
+  };
+  packingEssentials?: string[];
 }
